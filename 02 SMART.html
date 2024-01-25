@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART目标设定</title>
+</head>
+<body>
+    <H1>SMART目标设定</H1>
+    <div id="SMART">
+        <label for="Specific"><strong>S 确保目标具体（Specific）</strong>比如记忆英语单词</label><br>
+            <textarea class="SMART" name="Specific" id="Specific" cols="80" rows="10"></textarea><br><br>
+        <label for="Measurable"><strong>M 可衡量（Measurable）</strong>比如每天记忆10个英语单词</label><br>
+            <textarea class="SMART" name="Measurable" id="Measurable" cols="80" rows="10"></textarea><br><br>
+        <label for="Achievable"><strong>A 可达成（Achievable）</strong>目标不要太高</label><br>
+            <textarea class="SMART" name="Achievable" id="Achievable" cols="80" rows="10"></textarea><br><br>
+        <label for="Relevant"><strong>R 相关（Relevant）</strong>要对自己有用的</label><br>
+            <textarea class="SMART" name="Relevant" id="Relevant" cols="80" rows="10"></textarea><br><br>
+        <label for="Time-bound"><strong>T 时限性（Time-bound）</strong>比如10个单词要10分钟背完</label><br>
+            <textarea class="SMART" name="Time-bound" id="Time-bound" cols="80" rows="10"></textarea><br><br>
+    </div>
+
+    <button id="SMART_Submit" type="button">Submit</button>
+    <script>
+        const buttonclick = document.getElementById("SMART_Submit")
+        buttonclick.addEventListener("click",Data_save)
+        function Data_save() {
+            // 获取包含 <textarea> 元素的 <div> 元素
+            const smartDiv = document.getElementById("SMART");
+
+            // 获取 <textarea> 元素的 NodeList
+            const textareas = smartDiv.querySelectorAll("textarea");
+
+            // 遍历 <textarea> 元素并将其内容存储在本地存储中
+            textareas.forEach(function(textarea) {
+                const textareaId = textarea.getAttribute("id"); // 获取 <textarea> 的 id
+                const textareaContent = textarea.value; // 获取 <textarea> 的内容
+
+                // 使用 <textarea> 的 id 作为键，内容作为值存储在本地存储中
+                localStorage.setItem(textareaId, textareaContent);
+            });
+
+            // 在控制台中输出存储的内容（仅用于调试）
+            textareas.forEach(function(textarea) {
+                const textareaId = textarea.getAttribute("id");
+                const storedContent = localStorage.getItem(textareaId);
+                console.log(`Stored Content for ${textareaId}: ${storedContent}`);
+            });
+         }   
+    </script>
+
+</body>
+</html>
